@@ -5,12 +5,14 @@ require 'twitter'
 
 time = Time.new
 danas = time.strftime("%a, %d %b")
+=begin
 migovi = [
 	"Izgleda da je MIG. MORH je najavio vježbe",
 	"Jep, MIG-ovi su. Iz MORH-a su najavili letove",
 	"Lokalni 'poduzetnikov' BMW i dalje živi, ipak je MIG",
 	"Kvartovske plinske instalacije još stoje, bio je MIG"
 ]
+=end
 
 def dummy
 end
@@ -36,7 +38,7 @@ rss_potres = RSS::Parser.parse('http://www.emsc-csem.org/service/rss/rss.php?typ
 
 rss_potres.items.each do |item|
         if "#{item.title}".include? "TURKEY"  and "#{item.pubDate}".include? "#{danas}"
-                puts "Potres! - #{item.title}"
+                client.update("Potres! - #{item.title}")
         else
                 dummy
         end
